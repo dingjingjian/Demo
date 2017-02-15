@@ -1,0 +1,53 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>透明度变化</title>
+<style type="text/css">
+#div1{
+width:200px;
+height:200px;
+background:red;
+filter:alpha(opacity:30);
+opacity:0.3;
+}
+</style>
+</head>
+<script type="text/javascript">
+window.onload = function(){
+	var oDiv = document.getElementById('div1');
+	oDiv.onmouseover = function(){
+		startMove(100);
+		}
+	oDiv.onmouseout = function(){
+		startMove(30);
+		}
+	}
+	var timer = null;
+	var alpha = 30;
+	function startMove(iTarget){
+		var oDiv = document.getElementById('div1');
+		clearInterval(timer);
+		timer = setInterval(function(){
+			var speed = 0;
+			if(alpha < iTarget){
+				   speed = 10;
+				}
+			else{
+				speed = -10;
+			}
+			if(alpha == iTarget){
+				clearInterval(timer);
+			}
+			else{
+				alpha+=speed;
+				oDiv.style.filter = 'alpha(opactiy:'+alpha+')';
+				oDiv.style.opacity = alpha/100;
+				}
+			},30);
+		}
+</script>
+<body>
+<div id="div1"></div>
+</body>
+</html>

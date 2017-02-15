@@ -1,0 +1,19 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>生日倒计时</title>
+<script language="javascript" type="text/javascript">
+window.onload = function(){
+	var curtime = new Date();
+	var endtime = new Date("2016/10/23");
+	var lefttime = Math.ceil((endtime.getTime()-curtime.getTime())/(24*60*60*1000));
+	document.getElementById('timeShow').innerHTML = "距离生日还有："+lefttime+"天";
+	}
+</script>
+</head>
+
+<body>
+<div class="txtshow"><span id="timeShow"></span></div>
+</body>
+</html>
