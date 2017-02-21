@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>06绘制饼状图</title>
+</head>
+<body>
+ <canvas id="canvas">
+    抱歉，您的浏览器不支持Canvas。请升级您的浏览器！
+ </canvas>
+
+ <script>
+var data = [{
+                "value": .1,
+                "color": "#1BD0DC",
+                "title": "应届生"
+            },{
+                "value": .2,
+                "color": "#F9B700",
+                "title": "社会招生"
+            },{
+                "value": .3,
+                "color": "#EB6100",
+                "title": "老学员推荐"
+            },{
+                "value": .4,
+                "color": "#C4D0D1",
+                "title": "公开课"
+            }];
+
+
+    function piechart(id,date){
+        var canvas = document.getElementById(id);
+        var date = date
+        canvas.width = 430;
+        canvas.height = 250;
+        var ctx = canvas.getContext("2d");
+
+        var x0 = 215;
+        var y0 = 105;
+        var radius = 85;
+        var tempAngle = -90;
+
+        for(var i=0;i<data.length;i++){
+            // 开始绘制新状态的扇形
+            ctx.beginPath();
+            ctx.moveTo(215, 105);
+            ctx.fillStyle = data[i].color;
+            ctx.strokeStyle = "#fff";
+            var angle = data[i].value*360;
+            var startAngle = tempAngle*Math.PI/180; 
+            var endAngle = (tempAngle + angle)*Math.PI/180;
+            ctx.arc(215, 105, 85, startAngle, endAngle);
+            ctx.fill();
+            ctx.stroke();
+
+            tempAngle+=angle;
+            
+            // 绘制百分百数字
+            var remark =  { "x": 215, "y": 200 };
+            var sin = Math.sin((tempAngle + 90 - angle/2) /360 * 2 * Math.PI) * 85;
+            var cos = Math.cos((tempAngle + 90 - angle/2) /360 * 2 * Math.PI) * 85;
+
+            sin = sin<0 ? sin -25 : sin +5;
+            cos = cos<0 ? cos -15 : cos +5
+
+            remark.x = 215 + sin;
+            remark.y = 105 - cos;
+
+            ctx.font = "12px Arial";
+            ctx.fillStyle = "black";
+            ctx.fillText(data[i].value * 100 + "%", remark.x , remark.y);
+
+        }
+        // 中间的白圈
+        ctx.beginPath();
+        ctx.arc(215,105,50,0,2*Math.PI);
+        ctx.strokeStyle = "#fff";
+        ctx.fillStyle = "#fff"
+        ctx.fill();
+        ctx.stroke();
+
+        ctx.lineWidth = 12;
+        for(var i=0;i<data.length;i++){
+        // 绘制图示
+            ctx.beginPath();
+
+            ctx.strokeStyle = data[i].color;
+            ctx.fillStyle = "black";
+            ctx.moveTo( 430 / ( data.length * 2 ) + 105*i , 250 - 25);
+            ctx.lineTo( 430 / ( data.length * 2 ) + 15 + 105*i , 250 - 25);
+            ctx.font = "12px Arial";
+            ctx.textAlign = "left";
+            ctx.fillText(data[i].title, 430 / ( data.length * 2 )  + 20 + 105*i , 250 - 20);
+            ctx.stroke();
+            console.log(data.length);
+        }
+    };
+piechart("canvas",data);
+
+ </script>
+</body>
+</html>
