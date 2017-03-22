@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>可以自定义数据的svg中国地图插件 - JS代码网</title>
+<script type="text/javascript" src="js/lib/jquery.js"></script>
+<script type="text/javascript" src="js/lib/raphael-min.js"></script>
+<script type="text/javascript" src="js/res/chinaMapConfig.js"></script>
+<script type="text/javascript" src="js/map.js"></script>
+
+<style type="text/css">
+
+/* 提示自定义 */
+.stateTip, #StateTip{display:none; position:absolute; padding:8px; background-color: rgba(0,0,0,.6); border:1px solid #000; -moz-border-radius: 1px; -webkit-border-radius: 2px; border-radius: 2px; font-size:14px; color: #fff;text-align: center;}
+</style>
+
+</head>
+<body>
+
+            	<div id="ChinaMap"></div>
+
+<!-- <link rel="stylesheet" type="text/css" href="css/SyntaxHighlighter.css"> -->
+<script type="text/javascript">
+	 $('#ChinaMap').SVGMap({
+						mapName: 'china',
+						stateData: {
+	                    "jiangsu": {'stateInitColor': 3, "value":"150人"}, "henan": {'stateInitColor': 2, "value":"100人"}, "anhui": {'stateInitColor': 2, "value":"100人"}, "zhejiang": {'stateInitColor': 2, "value":"100人"}, "liaoning": {'stateInitColor': 2, "value":"100人"}, "beijing": {'stateInitColor': 3, "value":"150人"}, "hubei": {'stateInitColor': 2, "value":"100人"}, "jilin": {'stateInitColor': 2, "value":"100人"}, "shanghai": {'stateInitColor': 2, "value":"100人"}, "guangxi": {'stateInitColor': 2, "value":"100人"}, "sichuan": {'stateInitColor': 2, "value":"100人"}, "guizhou": {'stateInitColor': 0, "value":"0人"}, "hunan": {'stateInitColor': 0, "value":"0人"}, "shandong": {'stateInitColor': 0, "value":"0人"}, "guangdong": {'stateInitColor': 1, "value":"50人"}, "jiangxi": {'stateInitColor': 0, "value":"0人"}, "fujian": {'stateInitColor': 2, "value":"0人"}, "yunnan": {'stateInitColor': 2, "value":"100人"}, "hainan": {'stateInitColor': 2, "value":"100人"}, "shanxi": {'stateInitColor': 0, "value":"0人"}, "hebei": {'stateInitColor': 3, "value":"150人"}, "neimongol": {'stateInitColor': 2, "value":"100人"}, "tianjin": {'stateInitColor': 2, "value":"100人"}, "gansu": {'stateInitColor': 2, "value":"100人"}, "shaanxi": {'stateInitColor': 2, "value":"100人"}, "macau": {'stateInitColor': 2, "value":"100人"}, "hongkong": {'stateInitColor': 2, "value":"100人"}, "taiwan": {'stateInitColor': 3, "value":"150人"}, "qinghai": {'stateInitColor': 3, "value":"150人"}, "xizang": {'stateInitColor': 0, "value":"0人"}, "ningxia": {'stateInitColor': 3, "value":"150人"}, "xinjiang": {'stateInitColor': 4, "value":"200人"}, "heilongjiang": {'stateInitColor': 3, "value":"150人"}, "chongqing": {'stateInitColor': 3, "value":"150人"},
+            	},
+            	stateTipHtml: function(stateData, obj){
+            		var _value = stateData[obj.id].value;
+                    return obj.name+"&nbsp;"+_value;
+        }
+
+					});
+</script>
+</body>
+</html>
