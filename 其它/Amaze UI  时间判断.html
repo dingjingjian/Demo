@@ -1,0 +1,50 @@
+<div class="am-u-sm-12 am-u-md-12">
+    <ul class="am-u-sm-12 am-u-md-12">
+        <li class="dateSelect">
+            <small>时间1：</small><label class="dateStart"><input placeholder="请填写" type="text" class="t-datepicker txtIndent0" data-am-datepicker=""><i class="am-icon-calendar"></i></label><span class="zhi">至</span><label class="dateEnd"><input type="text"  placeholder="请填写" class="t-datepicker txtIndent0" data-am-datepicker=""><i class="am-icon-calendar"></i></label>
+    </ul>    
+    <ul class="am-u-sm-12 am-u-md-12">
+        <li class="dateSelect">
+            <small>时间2：</small><label class="dateStart"><input placeholder="请填写" type="text" class="t-datepicker txtIndent0" data-am-datepicker=""><i class="am-icon-calendar"></i></label><span class="zhi">至</span><label class="dateEnd"><input type="text"  placeholder="请填写" class="t-datepicker txtIndent0" data-am-datepicker=""><i class="am-icon-calendar"></i></label>
+    </ul>    
+</div>
+
+<script type="text/javascript">
+   
+//时间对比
+function timeCompare(){
+    for (var i = 0; i < $('.dateStart').length; i++){
+        eval('var startDate'+i+' = new Date();');
+        eval('var endDate'+i+' = new Date();');
+        eval('var isFirst'+i+' = true;');
+        $('.dateStart').eq(i).find('.t-datepicker').datepicker().on('changeDate.datepicker.amui',function(event) {
+            var j = $('.dateStart').index($(this).parent());
+            if (!eval('isFirst'+j)) {
+                if (event.date.valueOf() > eval('endDate'+j+'.valueOf()')) {
+                    layer.msg("开始时间不能大于结束时间", {time: 1500}); 
+                } else {
+                    eval('startDate'+j+' = new Date(event.date);');
+                }
+            }
+            eval('isFirst'+j+' = false;');
+            eval('startDate'+j+ '= new Date(event.date);');
+            $(this).datepicker('close');
+        });
+        $('.dateEnd').eq(i).find('.t-datepicker').datepicker().on('changeDate.datepicker.amui', function(event) {
+            var j = $('.dateEnd').index($(this).parent());
+            if (!eval('isFirst'+j)) {
+                if (event.date.valueOf() < eval('startDate'+j+'.valueOf()')) {
+                    layer.msg("结束时间不能小于开始时间", {time: 1500}); 
+                } else {
+                    eval('endDate'+j+' = new Date(event.date);');
+                }
+            }
+            eval('isFirst'+j+' = false;');
+            eval('endDate'+j+' = new Date(event.date);');
+            $(this).datepicker('close');
+        });
+    }
+} 
+
+
+</script>>
