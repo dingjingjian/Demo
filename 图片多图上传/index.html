@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <title>文件上传</title>
+    <style type="text/css">
+        #images{min-height:7em;max-height:21em;text-align:left;overflow-y:auto}
+        #images img{
+            width: 7em;
+            height: 7em;
+            margin:0.5em;
+        }
+        .inputFiles{display:none;}
+        .z_photo {
+            width: 7em;
+            height: 7em;
+            margin: 0.5em;
+            background: url(z_add.png) no-repeat;
+            background-size: 100% 100%;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<div class="content" >
+    <div id="images">
+            <div class="z_photo" onclick="addinputFile()"></div>
+    </div>
+    <form id="uploadForm" enctype="multipart/form-data" method="post">
+        <div class="inputFiles"></div>
+    </form> 
+    <div class="btn_submit">
+        <button  id="save"  type="button" class="btn btn-success" onClick="uploadFile()">提交</button>
+    </div> 
+</div>
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/toUpload.js"></script>
+</body>
+</html>
