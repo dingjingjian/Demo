@@ -1,0 +1,39 @@
+﻿<!doctype html>
+<html>
+
+<head>
+	<meta charset="utf-8">
+	<title>html5绿色扁平化播放器代码</title>
+	<link rel="stylesheet" href="./css/audio.css">
+
+	<style>
+		html,
+		body {
+			height: 100%;
+			margin: 0;
+		}
+
+		body {
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			-webkit-font-smoothing: antialiased;
+			-moz-osx-font-smoothing: grayscale;
+		}
+	</style>
+</head>
+
+<body>
+	<div class="audio-player">
+		
+	</div>
+	<script src="js/audio.js"></script>
+	<script>
+		audioPlayer.render({
+			elem:'.audio-player',
+			source:'./music/example.mp3'
+		});
+	</script>
+</body>
+
+</html>

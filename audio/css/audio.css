@@ -1,0 +1,167 @@
+.audio.green-audio-player {
+    width: 770px;
+    min-width: 300px;
+    height: 56px;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-left: 24px;
+    padding-right: 24px;
+    border-radius: 4px;
+    user-select: none;
+    -webkit-user-select: none;
+    background-color: #f6f6f6;
+}
+
+.audio.green-audio-player .play-pause-btn {
+    display: none;
+    cursor: pointer;
+    width: 24px;
+    height: 24px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: relative;
+    box-shadow: 0 4px 16px 0 rgba(0, 0, 0, 0.15);
+}
+
+.audio.green-audio-player .spinner {
+    width: 18px;
+    height: 18px;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACQAAAAkCAYAAADhAJiYAAAABGdBTUEAALGPC/xhBQAAB75JREFUWAm9WF1sXEcVPjNz767t9U+CbeImNiSKm6hsIa3kAmmRUFEClQpP4NTi5ymREyIh5CoNFTzEQUKiPxQJ8ZIUBSTET1jKAxJP5cEtohQjKymRE5VIVRRaJ01IY8dr7+69M3P4zuyu/2Kntup0tLtz79yZc775zs+cu4rW2PoPH242Se5Bp3kXserUxB3o24k4Zs3vaacmlVHXrVJnWlJ6/dSpZ6fXokKtdvLAwaE+781ecpwnRcZrqGVWSlEUOsURE2ntlSHF2pGKFClMc+c9mT8WXnzuldXoel9A3zz8dG+S2n4mvwPaFbGOBAgHIKSVAAm4KJZRYAEQD1wATLhlnwEQrNTnldY/O33imTfuBGxFQMPDw/r8O8WvYfEeCgCgWMSCASyCZSjSUBRMJQ9qDFUBEaYxgIMr4gzAK834YDdam9P+Zt8LhcI+txwws9zg4OBw09vTxUHy3AdRsj9snsJcRbhHEyUAikcUBQKqD3Ar81hjGnoBij7gDevBKO1SjVceeODhva+eGx2pLNVflb5gtH/ohcZJLn7XM+0UldVHolhh04CFIQiFBeuLZGxpqxEvhq1vACDFhLIcG9mdlou/+8Z3hltXWFkdrpppahDb3wn3xDoIZFCOAaMjUE6a2UVa6Unn6d8R+7PUGL3r4vSmSMhMx+0c0WbneLcn/jzWbgKIWEwFAgNTzCl8CsC0ERv+w+996EBh37z5QPd8G39n9svk1b0SK2wRILIhA2Z82Kaguwnhf7lvc/PfAH6Oo3kJ9Dau5Tva3/+Hn9OG1x/H6kNwsY/Cm2B4hF2Ig0AVQpAeoZf/+QPM/2FdRo1booFDT2+1aXJIRxFmwz5pGimxOK6rTOk3c925X/5qeLhcX7ya/ltHjuTKU+pHRG4PAGlxawEG08UBJMIRo/2nX/zJv0TenA955x8T3aKdwTlCFJvRzluL+fRqvjt3Yq1gRMGvn39+Jr8l9yRk/xYmh3bJUsGPoEquhTjzfZkrLUTOEweO3gckuzHdeYbvYqa4C+iRYL3wie7W369goiDk/X5GRka4/ytf+vu1aZtXnneCHbAPphCLiI4YvtZz/0OfuzA+9trFwBAwfkasJAxhlkeuQI6AW7Kd3tSw9TcfBEwdrMhQce4ppJFrYhgAMdg3LoQ08S/eL3NV/9BQo5qOhqAcGRekILpkPCRaNn8u/OLHYzKwXm1g8MjXkVKeC4YTXyIcNWhik1yu+V5NM5leDzbg/nI8gRmLR+I+eirf3XBGJq9nc3s+fRp0vBtsgX2DBMkvYIGjUrn4mNbsPw5beorilE1kSWUSfCve+vPrYaqlm5GcA/0vO+Isdp+FkxoYDMcMjiRHX0Ci8y3syAtL3gs7cgxhiaGLS4Wt1z1r/1cEjDiGhJuYTPwEyU/1SInQAM5SnNBhDisXTk/rfMi+6wVioZyY9CXLPhscB7BCOpDMRNwjx0AjuBF3rjUNwtB6Wor1kfXuzSxP2Ky6LNEViAoKJNrIRs45mItgtLra6oUar9+vf799e3NpfKL0RZHsnK1RgfRoIhyFmoswYNtStU1bqAljydLx9bivBQsYur3hwI5usfI5yUGSGFGCSUqgcpK2oJu8fcndHUHy9kWJMbBUjS6EnYSeTW3P3VW9vHSdzUSXdUQpZXQiX6+dZeNTfLaAWuD8cJveaGb+61Tk4NYgSrF8Ha7h/9n/XJnZ/uHCwWk/OjrqPvmpz3ZFyjcSe46VssgF1sKxkBk2PtJ3/1tjY2NzMXi3AQaTcBxdsDhD8DYFgsCS5EzUCewpO61a+8Khe7eR1OQHQIWTz1xWbK6hIkBWipy1xqNarOCMq1R02jnw7afyHwTUWtbOOa1RzWcl5JGnAQvHXK0ZF8PL/ccGDh59EE6+qAavz7lTL2AeffR4KDHuNK/+bO7AkIEnDj65C76zTV54OONQ3CMvpVLue27wOYt303LJl9566cRPr0rOqgtZrhcg+44fj2l8ynR1bfPnzv3JdXZ2cqFQmNvscusWARIhXz1w9GFU4R14S0mDLyUoagHIqGyCWpItVRxeYMqpp2tI9ZNd2dny1atXbT6f54mJe0ySXDFIqRm2ZTNbKrO7sSFpbyd/6dKIXQ2gOZMJWtl1h+kdRT/J1uJVyPqYszbDjalPEnaVCptYpQhEVFC6PWW/7X+3ol7dsGXH2YmZbTf9xe5b6Y2O6euzzezeM7GZ1raVopkmebvdGhWLXeglt62c3xYBElAnTx5MN6re11Ax3pD7VFu8kEjUwe1N5JFCQzNRDMevHjPVkQW/cgqSnDytlOZKqjh1Y4Ge8UVWWbAqXK74MPjA/u/tQDF1j4CxKnEGKRz1kkN2YHINidWOmzhNJUGUMo1pDOsmbtY6l/UbuZSCYF/KbrZxpsSUS5JcWxtvRYlx7NgxJzKXgpH7BcgXP5YFhVPPvokK84zx5hbSAATgHQ3/VPkITNWossbcLjgwhNkoemjDvNyZ8fEUkYr/spYHIzNXZGheTPVq/9DQR5JKvGm2TLkINQKBHmEoozmxyOtplLHCEKoEZzNZ32yLtlJJuKWjsQSvLheGh1dVyqwaUB2g5KI3rlfaWlKfq1TwkpfFE3bGOgBqSNLZxCUmabJRe3k239ZWwfw1HTv/Bw6V3iNaFo3HAAAAAElFTkSuQmCC);
+    background-size: cover;
+    background-repeat: no-repeat;
+    animation: spin 0.4s linear infinite;
+}
+
+.audio.green-audio-player .slider {
+    flex-grow: 1;
+    background-color: #D8D8D8;
+    cursor: pointer;
+    position: relative;
+}
+
+.audio.green-audio-player .slider .progress {
+    background-color: #086745;
+    border-radius: inherit;
+    position: absolute;
+    pointer-events: none;
+}
+
+.audio.green-audio-player .slider .progress .pin {
+    height: 8px;
+    width: 8px;
+    border-radius: 50%;
+    border: 3px solid #086745;
+    background-color: #fff;
+    position: absolute;
+    pointer-events: all;
+    box-shadow: 0px 1px 1px 0px rgba(0, 0, 0, 0.32);
+}
+
+.audio.green-audio-player .controls {
+    font-family: 'Roboto', sans-serif;
+    font-size: 16px;
+    line-height: 18px;
+    color: #55606E;
+    display: flex;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 24px;
+    margin-right: 24px;
+}
+
+.audio.green-audio-player .controls .slider {
+    margin-left: 16px;
+    margin-right: 16px;
+    border-radius: 2px;
+    height: 4px;
+}
+
+.audio.green-audio-player .controls .slider .progress {
+    width: 0;
+    height: 100%;
+}
+
+.audio.green-audio-player .controls .slider .progress .pin {
+    right: -8px;
+    top: -5px;
+}
+
+.audio.green-audio-player .controls span {
+    cursor: default;
+}
+
+/* 起始时间颜色 */
+.audio.green-audio-player .controls span.current-time {
+    color: #086745;
+}
+
+.audio.green-audio-player .volume {
+    position: relative;
+}
+
+.audio.green-audio-player .volume .volume-btn {
+    cursor: pointer;
+}
+
+.audio.green-audio-player .volume .volume-btn.open path {
+    fill: #086745;
+}
+
+.audio.green-audio-player .volume .volume-controls {
+    width: 30px;
+    height: 135px;
+    background-color: rgba(0, 0, 0, 0.62);
+    border-radius: 7px;
+    position: absolute;
+    left: -3px;
+    bottom: 52px;
+    flex-direction: column;
+    align-items: center;
+    display: flex;
+}
+
+.audio.green-audio-player .volume .volume-controls.hidden {
+    display: none;
+}
+
+.audio.green-audio-player .volume .volume-controls .slider {
+    margin-top: 12px;
+    margin-bottom: 12px;
+    width: 4px;
+    border-radius: 3px;
+}
+
+.audio.green-audio-player .volume .volume-controls .slider .progress {
+    bottom: 0;
+    height: 100%;
+    width: 4px;
+}
+
+.audio.green-audio-player .volume .volume-controls .slider .progress .pin {
+    left: -5px;
+    top: -8px;
+}
+
+.audio svg,
+.audio img {
+    display: block;
+}
+
+.audio .play-pause-btn svg {
+    position: absolute;
+    top: 0;
+    left: 7px;
+    width: 10px;
+}
+
+@keyframes spin {
+    from {
+      transform: rotateZ(0);
+    }
+    to {
+      transform: rotateZ(1turn);
+    }
+  }
