@@ -12,9 +12,7 @@ var audioPlayer = {
                 </div>
                 <!-- 播放&暂停 -->
                 <div class="play-pause-btn">
-                    <svg width="18" height="24" viewBox="0 0 18 24">
-                        <path fill="#086745" fill-rule="evenodd" d="M18 12L0 24V0" class="play-pause-icon" id="playPause">
-                    </svg>
+                	<i id="playPause" class="iconfont">`+(options.autoplay?'&#xe619;':'&#xe63a;')+`</i>
                 </div>
                 <!-- 播放进度条&时间 -->
                 <div class="controls">
@@ -29,11 +27,7 @@ var audioPlayer = {
                 <!-- 音量键 -->
                 <div class="volume">
                     <div class="volume-btn">
-                        <svg width="16" height="16" viewBox="0 0 24 24">
-                            <path fill="#566574" fill-rule="evenodd"
-                                d="M14.667 0v2.747c3.853 1.146 6.666 4.72 6.666 8.946 0 4.227-2.813 7.787-6.666 8.934v2.76C20 22.173 24 17.4 24 11.693 24 5.987 20 1.213 14.667 0zM18 11.693c0-2.36-1.333-4.386-3.333-5.373v10.707c2-.947 3.333-2.987 3.333-5.334zm-18-4v8h5.333L12 22.36V1.027L5.333 7.693H0z"
-                                id="speaker">
-                        </svg>
+                    	<div id="speaker"> </div>
                     </div>
                     <!-- 音量大小控制条 -->
                     <div class="volume-controls hidden">
@@ -45,7 +39,7 @@ var audioPlayer = {
                     </div>
                 </div>
 
-                <audio>
+                <audio `+(options.autoplay?'autoplay="autoplay"':'')+`>
                     <source src="`+options.source+`" type="audio/mpeg">
                 </audio>
             </div>
@@ -108,13 +102,21 @@ var audioPlayer = {
         });
         audioPlayer.element.player.addEventListener('canplay', audioPlayer.makePlay);
         audioPlayer.element.player.addEventListener('ended', function () {
-            audioPlayer.element.playPause.attributes.d.value = "M18 12L0 24V0";
+            audioPlayer.element.playPause.innerHTML  = "&#xe63a;";
             audioPlayer.element.player.currentTime = 0;
         });
 
         audioPlayer.element.volumeBtn.addEventListener('click', function () {
+        	audioPlayer.directionAware();
             audioPlayer.element.volumeBtn.classList.toggle('open');
             audioPlayer.element.volumeControls.classList.toggle('hidden');
+        });
+        
+        audioPlayer.element.volumeControls.addEventListener('mouseout', function (e) {
+            if(e.relatedTarget.className!='slider'&&e.relatedTarget.className!='volume-controls'&&e.relatedTarget.className!='pin'){
+            	audioPlayer.element.volumeBtn.classList.remove('open');
+                audioPlayer.element.volumeControls.classList.add('hidden');
+            }
         });
 
         window.addEventListener('resize', audioPlayer.directionAware);
@@ -152,18 +154,20 @@ var audioPlayer = {
         var current = audioPlayer.element.player.currentTime;
         var percent = current / audioPlayer.element.player.duration * 100;
         audioPlayer.element.progress.style.width = percent + '%';
-    
         audioPlayer.element.currentTime.textContent = audioPlayer.formatTime(current);
     },
     updateVolume:function(){
         /* 音量大小改变svg图片 */
         audioPlayer.element.volumeProgress.style.height = audioPlayer.element.player.volume * 100 + '%';
         if (audioPlayer.element.player.volume >= 0.5) {
-            audioPlayer.element.speaker.attributes.d.value = 'M14.667 0v2.747c3.853 1.146 6.666 4.72 6.666 8.946 0 4.227-2.813 7.787-6.666 8.934v2.76C20 22.173 24 17.4 24 11.693 24 5.987 20 1.213 14.667 0zM18 11.693c0-2.36-1.333-4.386-3.333-5.373v10.707c2-.947 3.333-2.987 3.333-5.334zm-18-4v8h5.333L12 22.36V1.027L5.333 7.693H0z';
+        	$(audioPlayer.element.speaker).removeClass('mid')
+        	$(audioPlayer.element.speaker).removeClass('min')
         } else if (audioPlayer.element.player.volume < 0.5 && audioPlayer.element.player.volume > 0.05) {
-            audioPlayer.element.speaker.attributes.d.value = 'M0 7.667v8h5.333L12 22.333V1L5.333 7.667M17.333 11.373C17.333 9.013 16 6.987 14 6v10.707c2-.947 3.333-2.987 3.333-5.334z';
+        	$(audioPlayer.element.speaker).addClass('mid')
+        	$(audioPlayer.element.speaker).removeClass('min')
         } else if (audioPlayer.element.player.volume <= 0.05) {
-            audioPlayer.element.speaker.attributes.d.value = 'M0 7.667v8h5.333L12 22.333V1L5.333 7.667';
+        	$(audioPlayer.element.speaker).addClass('min')
+        	$(audioPlayer.element.speaker).removeClass('mid')
         }
     },
     getRangeBox:function(event){
@@ -211,27 +215,30 @@ var audioPlayer = {
     },
     togglePlay:function(){
         if (audioPlayer.element.player.paused) {
-            audioPlayer.element.playPause.attributes.d.value = "M0 0h6v24H0zM12 0h6v24h-6z";
+            audioPlayer.element.playPause.innerHTML  = "&#xe619;";
             audioPlayer.element.player.play();
         } else {
-            audioPlayer.element.playPause.attributes.d.value = "M18 12L0 24V0";
+            audioPlayer.element.playPause.innerHTML  = "&#xe63a;";
             audioPlayer.element.player.pause();
         }
     },
     makePlay:function(){
         audioPlayer.element.playpauseBtn.style.display = 'block';
         audioPlayer.element.loading.style.display = 'none';
+        if(audioPlayer.element.player.paused){
+    		audioPlayer.element.playPause.innerHTML  = "&#xe63a;";
+    	}
     },
     directionAware:function(){
         if (window.innerHeight < 250) {
             audioPlayer.element.volumeControls.style.bottom = '-54px';
             audioPlayer.element.volumeControls.style.left = '54px';
-        } else if (audioPlayer.element.audioPlayeroffsetTop < 154) {
+        } else if (audioPlayer.element.audioPlayer.offsetTop < 154) {
             audioPlayer.element.volumeControls.style.bottom = '-164px';
-            audioPlayer.element.volumeControls.style.left = '-3px';
+            audioPlayer.element.volumeControls.style.left = '-7px';
         } else {
             audioPlayer.element.volumeControls.style.bottom = '52px';
-            audioPlayer.element.volumeControls.style.left = '-3px';
+            audioPlayer.element.volumeControls.style.left = '-7px';
         }
     }
 }
